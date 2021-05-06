@@ -1,7 +1,4 @@
-var link = "https://docs.google.com/spreadsheets/d/16-UdbV7hX7vRVxT2EVHDjXscaAnE5QKTjG-7JIFdOHM/edit#gid=0"
-var API_PATH = "./test_data/"
-
-SERVER_IP = "/"
+SERVER_IP = "http://ec2-13-233-174-21.ap-south-1.compute.amazonaws.com/covid/"
 
 
 
@@ -15,7 +12,6 @@ createLinksForResources = async () => {
 	for (link of links) {
 		console.log(link)
 		link.onclick = function () {
-			console.log(this.textContent)
 			renderResource(this.textContent)
 		}
 	}
@@ -24,7 +20,6 @@ createLinksForResources = async () => {
 
 renderResource = name => {
 	name = name.trim()
-	console.log(name == "Ambulances")
 	switch (name) {
 		case "Ambulances":
 			renderAmblanceTaxiPage()
@@ -35,6 +30,7 @@ renderAmblanceTaxiPage = async () => {
 	HTML = ""
 
 	console.log(SERVER_IP)
+	console.log("fetching")
 
 	fetch (SERVER_IP+"API/AmbulanceTaxi.json").
 	then  (response => response.json()).
